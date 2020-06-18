@@ -4,7 +4,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
         "encoding/json"
 	"log"
-	"metrics-server-exporter-go/api"
+	"example/api"
 	"time"
 )
 
