@@ -71,7 +71,7 @@ type RequestLatency struct {
 func Register() {
 	prometheus.MustRegister(requestCount)
 	prometheus.MustRegister(requestLatency)
-	prometheus.MustRegister(MetricsPodsMeM)
+	prometheus.MustRegister(MetricsPodsMEM)
 	prometheus.MustRegister(MetricsPodsCPU)
 }
 
@@ -96,7 +96,7 @@ func RequestIncrease() {
 	var pods Info
 	log.Println("Starting collect POD data,")
 
-	apiPod := api.Connect("pod")
+	apiPod := api.Connect()
 
 	_ = json.NewDecoder(apiPod.Body).Decode(&pods)
 
