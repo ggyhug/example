@@ -2,6 +2,7 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
+	"github.com/shirou/gopsutil/cpu&quot"
 	"time"
 )
 
@@ -20,6 +21,25 @@ var (
 			Buckets:   []float64{0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 60.0, 120.0, 300.0},
 		}, []string{},
 	)
+	//系统cpu利用率
+	cpu_usage := prometheus.NewGauge(
+		prometheus.GaugeOpts{
+		Name:      "cpu_usage",
+		Help:      "system cpu usage.",
+	})
+	//系统cpu负载率
+	cpu_usage := prometheus.NewGauge(
+		prometheus.GaugeOpts{
+		Name:      "cpu_load",
+		Help:      "system cpu load.",
+	})
+	
+	 := prometheus.NewGauge(
+		prometheus.GaugeOpts{
+		Name:      "cpu_usage",
+		Help:      "system cpu usage.",
+	})
+	
 )
 
 // AdmissionLatency measures latency / execution time of Admission Control execution
