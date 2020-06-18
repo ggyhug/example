@@ -5,7 +5,7 @@ import (
 	"crypto/x509"
 	"io/ioutil"
 	"log"
-	"metrics-server-exporter-go/config"
+	"example/config"
 	"net/http"
 	"regexp"
 	"strconv"
