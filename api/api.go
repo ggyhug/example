@@ -12,16 +12,12 @@ import (
 )
 
 // Connect - Responsible to connect to node/pod API
-func Connect(option string) *http.Response {
+func Connect() *http.Response {
 
 	var apiURL string
 
-	if option == "pod" {
-		apiURL = config.APIURLPods
-	} else {
-		apiURL = config.APIURLNodes
-	}
-
+	apiURL = config.APIURLPods
+	
 	var bearer = "Bearer " + string(returnDataFile(config.Token))
 	req, err := http.NewRequest("GET", apiURL, nil)
 	if err != nil {
