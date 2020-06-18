@@ -4,8 +4,9 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"log"
 	"net/http"
+	"os"
+	"strconv"
 	"example/metrics"
-	"time"
 )
 
 func main(){
@@ -19,14 +20,30 @@ func main(){
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	timer:=metrics.NewAdmissionLatency()	
-	go func() {
-		for {
-                       metrics.RequestIncrease()
-		       time.Sleep(time.Second)
+	timer:=metrics.NewAdmissionLatency()
+	metrics.RequestIncrease()
+	num:=os.Getenv("Num")
+	if num==""{
+		Fibonacci(10)
+		_,err:=w.Write([]byte("there is no env Num. Computation successed\n"))
+		if err!=nil{
+			log.Println("err:"+err.Error()+" No\n")
 		}
-	}()
+	}else{
+		numInt,_:=strconv.Atoi(num)
+		Fibonacci(numInt)
+		_,err:=w.Write([]byte("there is env Num. Computation successed\n"))
+		if err!=nil{
+			log.Println("err:"+err.Error()+" Yes\n")
+		}
+	}
 	timer.Observe()
 }
 
-
+func Fibonacci(n int)int{
+	if n<=2{
+		return 1
+	}else{
+		return Fibonacci(n-1)+Fibonacci(n-2)
+	}
+}
