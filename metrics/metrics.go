@@ -3,7 +3,10 @@ package metrics
 import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/shirou/gopsutil/cpu&quot"
+	"github.com/shirou/gopsutil/load&quot"
+	"github.com/shirou/gopsutil/mem&quot"
 	"time"
+	"&quot"
 )
 
 var (
@@ -33,11 +36,11 @@ var (
 		Name:      "cpu_load",
 		Help:      "system cpu load.",
 	})
-	
-	 := prometheus.NewGauge(
+	//系统mem使用情况
+	mem := prometheus.NewGauge(
 		prometheus.GaugeOpts{
-		Name:      "cpu_usage",
-		Help:      "system cpu usage.",
+		Name:      "mem",
+		Help:      "system mem usage.",
 	})
 	
 )
@@ -52,6 +55,9 @@ type RequestLatency struct {
 func Register() {
 	prometheus.MustRegister(requestCount)
 	prometheus.MustRegister(requestLatency)
+	prometheus.MustRegister(cou_usage)
+	prometheus.MustRegister(cpu_load)
+	prometheus.MustRegister(mem)
 }
 
 
@@ -72,4 +78,10 @@ func (t *RequestLatency) Observe() {
 // RequestIncrease increases the counter of request handled by this service
 func RequestIncrease() {
 	requestCount.WithLabelValues().Add(1)
+	cpu1 :=cpu.Percent(time.Second, false)
+	cpu2 :=load.Avg()
+	mem_ :=mem.VirtualMemory()
+	cpu_usage.Set(cpu1)
+	cpu_load.Set(cpu2)
+	mem.Set(mem)
 }
