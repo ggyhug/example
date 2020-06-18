@@ -4,9 +4,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"log"
 	"net/http"
-	"os"
-	"strconv"
 	"example/metrics"
+	"time"
 )
 
 func main(){
