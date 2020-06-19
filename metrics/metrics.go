@@ -5,6 +5,7 @@ import (
 	"github.com/shirou/gopsutil/cpu"
 	"github.com/shirou/gopsutil/load"
 	"github.com/shirou/gopsutil/mem"
+	"github.com/shirou/gopsutil/host"
 	"time"
 )
 
@@ -41,6 +42,12 @@ var (
 		Name:      "mem",
 		Help:      "system mem usage.",
 	})
+	//系统host情况
+	Host = prometheus.NewGauge(
+		prometheus.GaugeOpts{
+		Name:      "host",
+		Help:      "system host info.",
+	})
 	
 )
 
@@ -57,6 +64,7 @@ func Register() {
 	prometheus.MustRegister(cpu_usage)
 	prometheus.MustRegister(cpu_load)
 	prometheus.MustRegister(Mem)
+	prometheus.MustRegister(Host)
 }
 
 
@@ -80,7 +88,9 @@ func RequestIncrease() {
 	cpu1,_ :=cpu.Percent(time.Second, false)
 	cpu2,_ :=load.Avg()
 	mem_,_ :=mem.VirtualMemory()
-	cpu_usage.Set(cpu1.UsedPercent)
-	cpu_load.Set(cpu2.UsedPercent)
+	host_,_:=host.Info()
+	cpu_usage.Set(cpu1[0])
+	cpu_load.Set(cpu2[0])
 	Mem.Set(mem_.UsedPercent)
+	Host.Set(host_[0])
 }
