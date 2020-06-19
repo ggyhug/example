@@ -24,19 +24,19 @@ var (
 		}, []string{},
 	)
 	//系统cpu利用率
-	cpu_usage := prometheus.NewGauge(
+	cpu_usage = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 		Name:      "cpu_usage",
 		Help:      "system cpu usage.",
 	})
 	//系统cpu负载率
-	cpu_usage := prometheus.NewGauge(
+	cpu_usage = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 		Name:      "cpu_load",
 		Help:      "system cpu load.",
 	})
 	//系统mem使用情况
-	mem := prometheus.NewGauge(
+	mem = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 		Name:      "mem",
 		Help:      "system mem usage.",
@@ -82,5 +82,5 @@ func RequestIncrease() {
 	mem_ :=mem.VirtualMemory()
 	cpu_usage.Set(cpu1)
 	cpu_load.Set(cpu2)
-	mem.Set(mem)
+	mem.Set(mem_)
 }
