@@ -56,7 +56,7 @@ func Register() {
 	prometheus.MustRegister(requestLatency)
 	prometheus.MustRegister(cpu_usage)
 	prometheus.MustRegister(cpu_load)
-	prometheus.MustRegister(mem)
+	prometheus.MustRegister(Mem)
 }
 
 
@@ -80,7 +80,7 @@ func RequestIncrease() {
 	cpu1,_ :=cpu.Percent(time.Second, false)
 	cpu2,_ :=load.Avg()
 	mem_,_ :=mem.VirtualMemory()
-	cpu_usage=cpu1
+	cpu_usage:=cpu1
 	cpu_load:=cpu2
 	Mem:=mem_
 }
