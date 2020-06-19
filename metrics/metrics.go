@@ -2,11 +2,10 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
-	"&quot;github.com/shirou/gopsutil/cpu&quot;"
-	"&quot;github.com/shirou/gopsutil/load&quot"
-	"&quot;github.com/shirou/gopsutil/mem&quot"
+	"github.com/shirou/gopsutil/cpu;"
+	"github.com/shirou/gopsutil/load"
+	"github.com/shirou/gopsutil/mem"
 	"time"
-	"&quot"
 )
 
 var (
