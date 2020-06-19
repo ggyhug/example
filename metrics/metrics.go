@@ -2,9 +2,9 @@ package metrics
 
 import (
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/shirou/gopsutil/cpu&quot"
-	"github.com/shirou/gopsutil/load&quot"
-	"github.com/shirou/gopsutil/mem&quot"
+	"&quot;github.com/shirou/gopsutil/cpu&quot;"
+	"&quot;github.com/shirou/gopsutil/load&quot"
+	"&quot;github.com/shirou/gopsutil/mem&quot"
 	"time"
 	"&quot"
 )
