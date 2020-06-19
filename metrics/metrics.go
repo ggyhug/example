@@ -30,13 +30,13 @@ var (
 		Help:      "system cpu usage.",
 	})
 	//系统cpu负载率
-	cpu_usage = prometheus.NewGauge(
+	cpu_load = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 		Name:      "cpu_load",
 		Help:      "system cpu load.",
 	})
 	//系统mem使用情况
-	mem = prometheus.NewGauge(
+	Mem = prometheus.NewGauge(
 		prometheus.GaugeOpts{
 		Name:      "mem",
 		Help:      "system mem usage.",
@@ -54,7 +54,7 @@ type RequestLatency struct {
 func Register() {
 	prometheus.MustRegister(requestCount)
 	prometheus.MustRegister(requestLatency)
-	prometheus.MustRegister(cou_usage)
+	prometheus.MustRegister(cpu_usage)
 	prometheus.MustRegister(cpu_load)
 	prometheus.MustRegister(mem)
 }
@@ -77,10 +77,10 @@ func (t *RequestLatency) Observe() {
 // RequestIncrease increases the counter of request handled by this service
 func RequestIncrease() {
 	requestCount.WithLabelValues().Add(1)
-	cpu1 :=cpu.Percent(time.Second, false)
-	cpu2 :=load.Avg()
-	mem_ :=mem.VirtualMemory()
+	cpu1,_ :=cpu.Percent(time.Second, false)
+	cpu2,_ :=load.Avg()
+	mem_,_ :=mem.VirtualMemory()
 	cpu_usage.Set(cpu1)
 	cpu_load.Set(cpu2)
-	mem.Set(mem_)
+	Mem.Set(mem_)
 }
