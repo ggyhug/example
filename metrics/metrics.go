@@ -80,7 +80,7 @@ func RequestIncrease() {
 	cpu1,_ :=cpu.Percent(time.Second, false)
 	cpu2,_ :=load.Avg()
 	mem_,_ :=mem.VirtualMemory()
-	cpu_usage:=cpu1
-	cpu_load:=cpu2
-	Mem:=mem_
+	cpu_usage.Set(cpu1.UsedPercent)
+	cpu_load.Set(cpu2.UsedPercent)
+	Mem.Set(mem_.UsedPercent)
 }
