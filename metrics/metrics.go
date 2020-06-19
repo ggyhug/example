@@ -90,7 +90,7 @@ func RequestIncrease() {
 	mem_,_ :=mem.VirtualMemory()
 	host_,_:=host.Info()
 	cpu_usage.Set(cpu1[0])
-	cpu_load.Set(cpu2[0])
+	cpu_load.Set(cpu2.Load1)
 	Mem.Set(mem_.UsedPercent)
-	Host.Set(host_[0])
+	Host.Set(host_.Hostname)
 }
